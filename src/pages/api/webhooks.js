@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         req.body.entry[0]?.changes[0]?.value.statuses ||
         req.body.entry[0]?.changes[0]?.value.messages[0]?.type !== "text"
       )
-        return;
+        return res.status(200).send();
 
       const message =
         req.body.entry[0]?.changes[0]?.value.messages[0]?.text.body;
@@ -28,7 +28,8 @@ export default async function handler(req, res) {
       console.log(phoneNumber, "phone number");
       console.log(message, "message");
 
-      if (!message || !phoneNumber || !phoneNumberId) return;
+      if (!message || !phoneNumber || !phoneNumberId)
+        return res.status(200).send();
 
       const gptRes = await axios.post(
         "https://api.openai.com/v1/chat/completions",
