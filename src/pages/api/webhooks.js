@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     case "POST":
       console.log(JSON.stringify(req.body), "content");
       if (
-        req.body.entry[0]?.changes[0]?.value.messages &&
+        req.body.entry[0]?.changes[0]?.value.statuses ||
         req.body.entry[0]?.changes[0]?.value.messages[0]?.type !== "text"
       )
         return;
